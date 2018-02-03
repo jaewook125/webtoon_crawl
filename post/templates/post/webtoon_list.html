@@ -25,8 +25,16 @@
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            <strong>Album</strong>
-          </a>
+            <strong>웹툰 크롤링</strong>
+
+          </a><!--             제목 검색 -->
+      <form class="navbar-form navbar"  method="get">
+      <div class="form-group">
+        <input placeholder="제목 검색" type="text" name="q" value="{{ q }}" />
+        <input type="submit" value="검색" class="btn btn-primary"/>
+      </div>
+    </form>
+    <!--                  -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -43,10 +51,10 @@
           <div class="row">
 
 
-      {% for webtoon in post %}
+      {% for webtoon in contacts %}
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-              	{% if webtoon.imgage %}
+              	{% if webtoon.image %}
                 <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ webtoon.image.url }}" data-holder-rendered="true">
                 {% else %}
                 이미지 없음
@@ -64,32 +72,29 @@
               </div>
             </div>
       {% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
           </div>
         </div>
       </div>
 
     </main>
 
-<form action="/">
-  webtoon ID:<br>
-  <input type="text" name="webtoonid">
-  <br>
-  webbtoon NAME:<br>
-  <input type="text" name="webbtoonname">
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
-
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-      </div>
-    </footer>
   
 
 <svg xmlns="http://www.w3.org/2000/svg" width="208" height="225" viewBox="0 0 208 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
